@@ -1,3 +1,6 @@
+<?php 
+    include '../function.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +23,7 @@
 <body>
     <div class="container border border-5 p-4 d-flex justify-content-between my-3">
         <h3>Accessories Store</h3>
-        <button class="btn btn-outline-success"><i class="fa-solid fa-plus"></i>  Add Product</button>
+        <button class="btn btn-outline-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-plus"></i>  Add Product</button>
     </div>
     <div class="container">
         <table class="table align-middle table-hover" style="table-layout: fixed;">
@@ -49,5 +52,8 @@
             </tr>
         </table>
     </div>
+    <?php 
+        include 'modal.php';
+    ?>
 </body>
 </html>
