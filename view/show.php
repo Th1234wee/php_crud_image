@@ -23,11 +23,12 @@
 <body>
     <div class="container border border-5 p-4 d-flex justify-content-between my-3">
         <h3>Accessories Store</h3>
-        <button class="btn btn-outline-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-plus"></i>  Add Product</button>
+        <button id="open_add" class="btn btn-outline-success"  data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-plus"></i>  Add Product</button>
     </div>
     <div class="container">
         <table class="table align-middle table-hover" style="table-layout: fixed;">
             <tr>
+                <td>ID</td>
                 <td>Name</td>
                 <td>Image</td>
                 <td>Price</td>
@@ -36,20 +37,9 @@
                 <td>Brand</td>
                 <td>Action</td>
             </tr>
-            <tr>
-                <td>Samsung Galaxy Z Fold 2</td>
-                <td>
-                    <img src="../images/image-example.jpg" alt="image-example.jpg">
-                </td>
-                <td>200</td>
-                <td>5</td>
-                <td>Mobiles</td>
-                <td>Samsung</td>
-                <td>
-                    <button class="btn btn-outline-warning"><i class="fa-solid fa-pen-to-square"></i></button>
-                    <button class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
-                </td>
-            </tr>
+            <?php  
+                show_product();
+            ?>
         </table>
     </div>
     <?php 
@@ -57,3 +47,33 @@
     ?>
 </body>
 </html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function(){
+       $("#open_add").on("click",function(){
+            $("#accept_edit").hide();
+            $("#accept_add").show();
+       })
+       $("body").on("click","#open_edit",function(){
+            $("#accept_edit").show();
+            $("#accept_add").hide();
+
+            var id         = $(this).parents('tr').find('td').eq(0).text();
+            var name       = $(this).parents('tr').find('td').eq(1).text();
+            var image      = $(this).parents('tr').find('td:eq(2) img').attr('alt');
+            var price      = $(this).parents('tr').find('td').eq(3).text();
+            var qty        = $(this).parents('tr').find('td').eq(4).text();
+            var category   = $(this).parents('tr').find('td').eq(5).text();
+            var brand      = $(this).parents('tr').find('td').eq(6).text();
+            
+            $("#id").val(id);
+            $("#name").val(name);
+            $("#price").val(price);
+            $("#old_image").val(image);
+            $("#qty").val(qty);
+            $("#category").val(category);
+            $("#brand").val(brand);
+       })
+    })
+
+</script>
